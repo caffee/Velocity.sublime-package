@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>fileTypes</key>
+    <array>
+        <string>vm</string>
+    </array>
+    <key>name</key>
+    <string>Velocity</string>
+    <key>patterns</key>
+    <array>
+        <!-- Cascading stylesheets block -->
+        <dict>
+            <key>begin</key>
+            <string>(&lt;style)</string>
+            <key>endCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>constant.other.stylesheet.vm</string>
+                </dict>
+            </dict>
+            <key>beginCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>constant.other.stylesheet.vm</string>
+                </dict>
+            </dict>
+            <key>name</key>
+            <string>constant.other.stylesheet.vm</string>
+            <key>end</key>
+            <string>(&lt;\/style&gt;)</string>
+        </dict>
+         <!-- Script block -->
+        <dict>
+            <key>begin</key>
+            <string>(&lt;script)</string>
+            <key>endCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.other.attribute-name.script.vm</string>
+                </dict>
+            </dict>
+            <key>beginCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.other.attribute-name.script.vm</string>
+                </dict>
+            </dict>
+            <key>name</key>
+            <string>entity.other.attribute-name.script.vm</string>
+            <key>end</key>
+            <string>(&lt;\/script&gt;)</string>
+        </dict>
+       <!-- Reset HTML tag -->
+        <dict>
+            <key>reset.html.tags</key>
+            <string>Reset html open tag</string>
+            <key>match</key>
+            <string>(&lt;(/)?(!)?(?i:(--|DOCTYPE|html|head|title|meta|body|div|span|applet|object|iframe|h1|h2|h3|h4|h5|h6|p|br|blockquote|pre|a|abbr|acronym|address|big|cite|code|del|dfn|em|img|ins|kbd|q|s|samp|small|strike|strong|sub|sup|tt|var|b|u|i|center|dl|dt|dd|ol|ul|li|fieldset|form|label|legend|table|caption|tbody|tfoot|thead|tr|th|td|article|aside|canvas|details|embed|igure|figcaption|footer|header|hgroup|menu|nav|output|ruby|section|summary|time|mark|audio|video|article|aside|details|figcaption|figure|footer|header|hgroup|menu|nav|section))(\s+)?(/)?(&gt;|))</string>
+            <key>name</key>
+            <string>reset.html.tags.vm</string>
+        </dict>
+        <dict>
+            <key>reset.html.tags</key>
+            <string>Reset html inline close tag</string>
+            <key>match</key>
+            <string>(?&lt;=[\"|\s+])(\/&gt;)</string>
+            <key>name</key>
+            <string>reset.html.tags.vm</string>
+        </dict>
+        <dict>
+            <key>reset.html.tags</key>
+            <string>Reset html inline close tag</string>
+            <key>match</key>
+            <string>(?&lt;=[\"]|[--])(&gt;)</string>
+            <key>name</key>
+            <string>reset.html.tags.vm</string>
+        </dict>
+        <!-- Singleline comment -->
+        <dict>
+            <key>comment</key>
+            <string>singleline.comment.vm</string>
+            <key>match</key>
+            <string>(##.*)</string>
+            <key>name</key>
+            <string>comment.vm</string>
+        </dict>
+        <!-- Multiline comment -->
+        <dict>
+            <key>multiline.comment</key>
+            <string>multiline.comment.vm</string>
+            <key>begin</key>
+            <string>#\*</string>
+            <key>endCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment.vm</string>
+                </dict>
+            </dict>
+            <key>beginCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment.vm</string>
+                </dict>
+            </dict>
+            <key>name</key>
+            <string>comment.vm</string>
+            <key>end</key>
+            <string>\*#</string>
+        </dict>
+        <!-- Directives -->
+        <dict>
+            <key>directives</key>
+            <string>directives.keyword.vm</string>
+            <key>match</key>
+            <string>(?:#set|#if|#elseif|#else|#end|#foreach|#include|#parse|#stop|#break|#evaluate|#define|#macro)\b</string>
+            <key>name</key>
+            <string>keyword.directives.vm</string>
+        </dict>
+        <!-- Macro function -->
+        <dict>
+            <key>macro.function</key>
+            <string>macro.function.vm</string>
+            <key>match</key>
+            <string>(#([^set]|[^if]|[^elseif]|[^else]|[^end]|[^foreach]|[^include]|[^parse]|[^stop]|[^break]|[^evaluate]|[^define]|[^macro]|[^render]|[^link]|[^imageresource]|[^file]|[^log]|[^\s].*?))(?=\()</string>
+            <!-- <string>(#[^set|if|elseif|else|end|foreach|include|parse|stop|break|evaluate|define|macro|render|link|imageresource|file|log|\s]*.+)(?=\()</string> -->
+             <key>name</key>
+            <string>support.function.vm</string>
+        </dict>
+        <!-- Macro function name-->
+        <dict>
+            <key>macro.name.function</key>
+            <string>macro.function.name.vm</string>
+            <key>match</key>
+            <string>(?&lt;=#macro\()(.+?)(?=\$|\)|\s)</string>
+            <!-- <string>(?&lt;=#macro[(\(|\s+\()])(.+?)(?=\$|$)</string> -->
+            <key>name</key>
+            <string>support.function.vm</string>
+        </dict>
+        <!-- Operator syntax -->
+        <dict>
+            <key>operator</key>
+            <string>operator.syntax.vm</string>
+            <key>match</key>
+            <string>(=|==|!=|&gt;|&lt;|!|&amp;&amp;|\|\||\[|\])</string>
+            <key>name</key>
+            <string>keyword.operator.vm</string>
+        </dict>
+        <!-- Numeric -->
+        <dict>
+            <key>numeric</key>
+            <string>numeric.vm</string>
+            <key>match</key>
+            <string>([0-9])</string>
+            <key>name</key>
+            <string>entity.other.attribute-name.numeric.vm</string>
+        </dict>
+        <!-- Variables Properties Methods shorthand -->
+        <dict>
+            <key>variables.properties.methods.shorthand.notation</key>
+            <string>Variables($var) Properties($var.Name) Methods($var.getName())</string>
+            <key>match</key>
+            <string>(\$\!?[a-zA-Z0-9\-_.]+)</string>
+            <key>name</key>
+            <string>variable.parameter.vm</string>
+        </dict>
+        <!-- Variables Properties Methods formal -->
+        <dict>
+            <key>variables.properties.methods.formal.notation.excludelist</key>
+            <string>Variables(${var}) Properties(${var.Name)} Methods(${var.getName()}) excludelist</string>
+            <key>match</key>
+            <string>((?&lt;=["":""|\s+])(\}\)|}))</string>
+            <key>name</key>
+            <string>reset.exlcude.list.vm</string>
+        </dict>
+        <dict>
+            <key>variables.properties.methods.formal.notation</key>
+            <string>Variables(${var}) Properties(${var.Name)} Methods(${var.getName()})</string>
+            <key>match</key>
+            <string>(\$\!?(\{|{))([a-zA-Z0-9_\-.]+)|(\}|})</string>
+            <key>name</key>
+            <string>variable.parameter.vm</string>
+        </dict>
+        <!-- Methods chains -->
+        <dict>
+            <key>methods.chains.notation</key>
+            <string>methods.chains.vm</string>
+            <key>match</key>
+            <!-- <string>(?&lt;=(\(\w|\)\.))\w+</string> -->
+            <string>(?&lt;=(\(\W|\)\.))\w+</string>
+            <key>name</key>
+            <string>variable.parameter.vm</string>
+        </dict>
+        <!-- Double quoted string -->
+        <dict>
+            <key>begin</key>
+            <string>"</string>
+            <key>endCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.quoted.double.vm</string>
+                </dict>
+            </dict>
+            <key>beginCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.quoted.double.vm</string>
+                </dict>
+            </dict>
+            <key>name</key>
+            <string>string.quoted.double.vm</string>
+            <key>end</key>
+            <string>"</string>
+        </dict>
+        <!-- Single quoted string -->
+        <dict>
+            <key>begin</key>
+            <string>'</string>
+            <key>endCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.quoted.single.vm</string>
+                </dict>
+            </dict>
+            <key>beginCaptures</key>
+            <dict>
+                <key>0</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.quoted.single.vm</string>
+                </dict>
+            </dict>
+            <key>name</key>
+            <string>string.quoted.single.vm</string>
+            <key>end</key>
+            <string>'</string>
+        </dict>
+    </array>
+    <key>scopeName</key>
+    <string>source.vm</string>
+    <key>uuid</key>
+    <string>7EC0FE90-1515-11E2-892E-0800200C9A66</string>
+</dict>
+</plist>

@@ -1,0 +1,4 @@
+{
+    // Trigger auto complete syntax specific
+    "auto_complete_triggers": [ {"selector": "source.vm", "characters": "#"} ]
+}
