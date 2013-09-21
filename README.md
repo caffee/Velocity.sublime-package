@@ -23,7 +23,7 @@ Install package to:
 
 Usage
 -----
-* __Trigger Completions List:__ <kbd>ctrl + spacebar</kbd> or <kbd>#</kbd>  
+* __Velocity directives auto-completion list:__ <kbd>ctrl + spacebar</kbd> or <kbd>#</kbd>  
 
 LICENSE
 -------
